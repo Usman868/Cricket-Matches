@@ -27,7 +27,7 @@
 
     header h1 {
         font-size: 2.5rem;
-        margin-bottom: 40px;
+        margin-bottom: 30px;
         text-transform: uppercase;
         letter-spacing: 2px;
         color: #f8f8f8;
@@ -188,20 +188,18 @@
     }
 
     .search-input {
-        padding: 8px 12px;
-        width: 250px;
-        font-size: 16px;
+        padding: 10px 12px;
+        width: 350px;
+        font-size: 18px;
         border: 1px solid rgba(255, 255, 255, 0.5);
         border-radius: 4px;
         background-color: rgba(0, 0, 0, 0.5);
-        /* dark translucent background */
         color: #fff;
-        /* white text */
+        margin-bottom: 10px;
     }
 
     .search-input::placeholder {
         color: #ccc;
-        /* placeholder color */
     }
 
     .search-input:focus {
@@ -211,19 +209,4 @@
         box-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
     }
 
-    .search-btn {
-        padding: 8px 16px;
-        font-size: 16px;
-        background-color: rgba(255, 215, 0, 0.8);
-        /* gold button */
-        color: #000;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        transition: 0.3s;
-    }
-
-    .search-btn:hover {
-        background-color: #ffd700;
-        /* brighter gold on hover */
-    }
+ 

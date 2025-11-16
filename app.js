@@ -198,105 +198,105 @@ var matches = {
         date: "Nov 11, 2025",
         Stadium: "Rawalpindi Cricket Stadium, Rawalpindi",
         matchType: "ODI",
-        teams: ["pakistanSquad", "sriLankaSquad"]
+        teams: ["pakistanSquad", "sriLankaSquad"],
     },
     Qat_Vs_Afg: {
         match: "Qatar vs Afghanistan",
         date: "Nov 11, 2025",
         Stadium: "West End Park International Cricket Stadium, Doha",
         matchType: "T20I",
-        teams: ["qatarSquad", "afghanistanSquad"]
+        teams: ["qatarSquad", "afghanistanSquad"],
     },
     Ban_Vs_Ire_1: {
         match: "Bangladesh vs Ireland",
         date: "Nov 11, 2025",
         Stadium: "Sylhet International Cricket Stadium, Sylhet",
         matchType: "Test (Day 1)",
-        teams: ["bangladeshSquad", "irelandSquad"]
+        teams: ["bangladeshSquad", "irelandSquad"],
     },
     NZ_Vs_WI_1: {
         match: "New Zealand vs West Indies",
         date: "Nov 13, 2025",
         Stadium: "University Oval, Dunedin",
         matchType: "T20I",
-        teams: ["newZealandSquad", "westIndiesSquad"]
+        teams: ["newZealandSquad", "westIndiesSquad"],
     },
     Pak_Vs_Sri_2: {
         match: "Pakistan vs Sri Lanka (2nd ODI)",
         date: "Nov 13, 2025",
         Stadium: "Rawalpindi Cricket Stadium, Rawalpindi",
         matchType: "ODI",
-        teams: ["pakistanSquad", "sriLankaSquad"]
+        teams: ["pakistanSquad", "sriLankaSquad"],
     },
     Ind_Vs_RSA_1: {
         match: "India vs South Africa",
         date: "Nov 14, 2025",
         Stadium: "Eden Gardens, Kolkata",
         matchType: "Test",
-        teams: ["indiaSquad", "southAfricaSquad"]
+        teams: ["indiaSquad", "southAfricaSquad"],
     },
     Pak_Vs_Sri_3: {
         match: "Pakistan vs Sri Lanka (3rd ODI)",
         date: "Nov 15, 2025",
         Stadium: "Rawalpindi Cricket Stadium, Rawalpindi",
         matchType: "ODI",
-        teams: ["pakistanSquad", "sriLankaSquad"]
+        teams: ["pakistanSquad", "sriLankaSquad"],
     },
     NZ_Vs_WI_2: {
         match: "New Zealand vs West Indies (1st ODI)",
         date: "Nov 16, 2025",
         Stadium: "Hagley Oval, Christchurch",
         matchType: "ODI",
-        teams: ["newZealandSquad", "westIndiesSquad"]
+        teams: ["newZealandSquad", "westIndiesSquad"],
     },
     Pak_Vs_Afg: {
         match: "Pakistan vs Afghanistan (T-S)",
         date: "Nov 17, 2025",
         Stadium: "Rawalpindi Cricket Stadium, Rawalpindi",
         matchType: "T20I",
-        teams: ["pakistanSquad", "afghanistanSquad"]
+        teams: ["pakistanSquad", "afghanistanSquad"],
     },
     Ban_Vs_Ire_2: {
         match: "Bangladesh vs Ireland",
         date: "Nov 18, 2025",
         Stadium: "Shere Bangla National Stadium, Dhaka",
         matchType: "Test",
-        teams: ["bangladeshSquad", "irelandSquad"]
+        teams: ["bangladeshSquad", "irelandSquad"],
     },
     SL_Vs_Afg: {
         match: "Sri Lanka vs Afghanistan (T-S)",
         date: "Nov 19, 2025",
         Stadium: "Rawalpindi Cricket Stadium, Rawalpindi",
         matchType: "T20I",
-        teams: ["sriLankaSquad", "afghanistanSquad"]
+        teams: ["sriLankaSquad", "afghanistanSquad"],
     },
     NZ_Vs_WI_3: {
         match: "New Zealand vs West Indies (3rd ODI)",
         date: "Nov 22, 2025",
         Stadium: "Seddon Park, Hamilton",
         matchType: "ODI",
-        teams: ["newZealandSquad", "westIndiesSquad"]
+        teams: ["newZealandSquad", "westIndiesSquad"],
     },
     Ind_Vs_RSA_2: {
         match: "India vs South Africa (2nd Test)",
         date: "Nov 22, 2025",
         Stadium: "Barsapara Cricket Stadium, Guwahati",
         matchType: "Test",
-        teams: ["indiaSquad", "southAfricaSquad"]
+        teams: ["indiaSquad", "southAfricaSquad"],
     },
     Pak_Vs_Afg_2: {
         match: "Pakistan vs Afghanistan (T-S)",
         date: "Nov 24, 2025",
         Stadium: "Gaddafi Stadium, Lahore",
         matchType: "T20I",
-        teams: ["pakistanSquad", "afghanistanSquad"]
+        teams: ["pakistanSquad", "afghanistanSquad"],
     },
     SL_Vs_Afg_2: {
         match: "Sri Lanka vs Afghanistan (T-S F)",
         date: "Nov 25, 2025",
         Stadium: "Gaddafi Stadium, Lahore",
         matchType: "T20I",
-        teams: ["sriLankaSquad", "afghanistanSquad"]
+        teams: ["sriLankaSquad", "afghanistanSquad"],
     },
 };
 
@@ -307,6 +307,7 @@ var popup = document.querySelector(".match-popup");
 var popupHeader = popup.querySelector(".popup-header h2");
 var popupInfo = popup.querySelector(".popup-header p");
 var teamBoxes = popup.querySelectorAll(".team-box ul");
+var searchValue = document.getElementById("search-input")
 
 for (var key in matches) {
     var match = matches[key];
@@ -362,4 +363,73 @@ function closeBtn() {
 };
 
 
+// function searchBtn() {
+//     var searchValue = document.getElementById("search-input").value
+
+
+// }
+
+
+function searchBtn() {
+    var searchValue = document.getElementById("search-input").value
+        .trim()
+        .toLowerCase()
+        .replace(/\s+/g, ""); // remove all spaces for flexible matching
+
+    // If search is empty → show all matches
+    if (searchValue === "") {
+        container.innerHTML = "";
+        for (var key in matches) {
+            var match = matches[key];
+            container.innerHTML += `
+            <div class="match-card" onclick="popUp(event)" data-match="${key}">
+                <div class="match-header">
+                    <h2>${match.match}</h2>
+                </div>
+                <div class="match-details">
+                    <p><strong>Date:</strong> ${match.date}</p>
+                    <p><strong>Venue:</strong> ${match.Stadium}</p>
+                    <p><strong>Match Type:</strong> ${match.matchType}</p>
+                </div>
+            </div>`;
+        }
+        return;
+    }
+
+    // Otherwise filter the matches
+    container.innerHTML = "";
+    var found = false;
+
+    for (var key in matches) {
+        var match = matches[key];
+
+        // Normalize match name (remove spaces and lowercase)
+        var matchName = match.match.toLowerCase().replace(/\s+/g, "");
+
+        // Check if match name includes the search value
+        if (matchName.includes(searchValue)) {
+            found = true;
+            container.innerHTML += `
+            <div class="match-card" onclick="popUp(event)" data-match="${key}">
+                <div class="match-header">
+                    <h2>${match.match}</h2>
+                </div>
+                <div class="match-details">
+                    <p><strong>Date:</strong> ${match.date}</p>
+                    <p><strong>Venue:</strong> ${match.Stadium}</p>
+                    <p><strong>Match Type:</strong> ${match.matchType}</p>
+                </div>
+            </div>`;
+        }
+    }
+
+    if (!found) {
+        container.innerHTML = "<p style='text-align:center; color:red;'>No matches found.</p>";
+    }
+}
+
+
+document.getElementById("search-input").addEventListener("input", function(e) {
+        searchBtn();
+});
 
